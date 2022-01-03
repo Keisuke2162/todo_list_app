@@ -30,6 +30,8 @@ class _TaskDetailView extends State<TaskDetailView> {
   @override
   Widget build(BuildContext context) {
 
+    final TaskModel taskModel = TaskModel();
+
     return ChangeNotifierProvider(
 
       // 子タスクの一覧を取得
@@ -61,6 +63,8 @@ class _TaskDetailView extends State<TaskDetailView> {
                         onChanged: (value) {
                           // setState(() => widget.task[index].isDone = value);
 
+                          taskModel.switchStateChildTaskData(widget.documentId, childTasks[index].documentId, value);
+
                           // TODO: ローカルデータを更新
                         },
                         title: Text(
@@ -75,6 +79,8 @@ class _TaskDetailView extends State<TaskDetailView> {
                         value: childTasks[index].isDone,
                         onChanged: (value) {
                           // setState(() => widget.task[index].isDone = value);
+
+                          taskModel.switchStateChildTaskData(widget.documentId, childTasks[index].documentId, value);
 
                           // TODO: ローカルデータを更新
                         },
@@ -104,14 +110,11 @@ class _TaskDetailView extends State<TaskDetailView> {
                           return;
                         }
 
-                        /*
-                        ChildTask newTask = ChildTask(value, false);
                         setState(() {
-                          widget.task.add(newTask);
+                          taskModel.addChildTaskData(value, widget.documentId);
                           _controller.clear();
                         });
 
-                         */
                       },
                     ),
                   ),

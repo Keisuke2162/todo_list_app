@@ -48,20 +48,20 @@ class TaskModel extends ChangeNotifier {
   // 子タスクの一覧を取得する
   void fetchChildTaskData(String documentId) {
 
-    firestoreInstance.collection('tasks').doc(documentId).collection('childTasks').get().then((childQuerySnapshot) {
+    firestoreInstance.collection('tasks').doc(documentId).collection('childTasks').snapshots().listen((QuerySnapshot snapshot) {
+      final List<ChildTask> childTasks = snapshot.docs.map((DocumentSnapshot document) {
 
-      final List<ChildTask> childTasks = childQuerySnapshot.docs.map((DocumentSnapshot childDocument) {
-
-        Map<String, dynamic> data = childDocument.data() as Map<String, dynamic>;
+        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
         final String childTitle = data['title'];
         final bool isDone = data['isDone'];
-        final documentId = childDocument.id;
+        final documentId = document.id;
 
         return ChildTask(childTitle, isDone, documentId);
       }).toList();
 
       this.childTaskList = childTasks;
       notifyListeners();
+
     });
   }
 
@@ -70,6 +70,16 @@ class TaskModel extends ChangeNotifier {
     // FirebaseFirestore.instance.collection('hunters').doc('senritsu').update({'post': 'ノストラードファミリー'});
 
     firestoreInstance.collection('tasks').add({'title': title});
+  }
+  
+  // 子タスクのデータを追加
+  void addChildTaskData(String title, String documentId) {
+    firestoreInstance.collection('tasks').doc(documentId).collection('childTasks').add({'title': title, 'isDone': false});
+  }
+  
+  // 子タスクのisDone状態を更新
+  void switchStateChildTaskData(String parentDocumentId, String childDocumentId, bool isDone) {
+    firestoreInstance.collection('tasks').doc(parentDocumentId).collection('childTasks').doc(childDocumentId).update({'isDone': isDone});
   }
 
 
