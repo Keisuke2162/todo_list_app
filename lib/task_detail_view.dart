@@ -1,11 +1,12 @@
 import 'package:check_list_app/task_model.dart';
-import 'package:check_list_app/test_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class TaskDetailView extends StatefulWidget {
 
-  TaskDetailView(this.task);
-  List<Task> task;
+  String documentId;
+  TaskDetailView(this.documentId);
 
   @override
   _TaskDetailView createState() => _TaskDetailView();
@@ -29,86 +30,104 @@ class _TaskDetailView extends State<TaskDetailView> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TaskDetailView"),
-      ),
-      body: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-              // shrinkWrap: true,
-              // physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                if (widget.task[index].isDone) {
-                  return CheckboxListTile(
-                    value: widget.task[index].isDone,
-                    onChanged: (value) {
-                      setState(() => widget.task[index].isDone = value);
+    return ChangeNotifierProvider(
 
-                      // TODO: ローカルデータを更新
-                    },
-                    title: Text(
-                      widget.task[index].title,
-                      style: TextStyle(
-                          decoration: TextDecoration.lineThrough
-                      ),
-                    ),
-                  );
-                } else {
-                  return CheckboxListTile(
-                    value: widget.task[index].isDone,
-                    onChanged: (value) {
-                      setState(() => widget.task[index].isDone = value);
+      create: (_) => TaskModel()..getChildTaskList(widget.documentId),
 
-                      // TODO: ローカルデータを更新
-                    },
-                    title: Text(
-                      widget.task[index].title,
-                      style: TextStyle(
-                      ),
-                    ),
-                  );
-                }
-              },
-              itemCount: widget.task.length,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Todo"),
+        ),
+
+        // ignore: missing_return
+        body: Consumer<TaskModel> (builder: (context, model, child) {
+          final List<ChildTask> childTasks = model.childTaskList;
+
+          if (childTasks.isEmpty) {
+            return Text("データなし");
+          }
+
+          return Column(
             children: [
-              SizedBox(width: 32.0),
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                      hintText: "タスクを追加"
-                  ),
-                  onSubmitted: (String value) {
-                    if (value.trim().isEmpty) {
-                      return;
-                    }
+              Flexible(
+                child: ListView.builder(
+                  // shrinkWrap: true,
+                  // physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    if (childTasks[index].isDone) {
+                      return CheckboxListTile(
+                        value: childTasks[index].isDone,
+                        onChanged: (value) {
+                          // setState(() => widget.task[index].isDone = value);
 
-                    Task newTask = Task(value, false);
-                    setState(() {
-                      widget.task.add(newTask);
-                      _controller.clear();
-                    });
+                          // TODO: ローカルデータを更新
+                        },
+                        title: Text(
+                          childTasks[index].title,
+                          style: TextStyle(
+                              decoration: TextDecoration.lineThrough
+                          ),
+                        ),
+                      );
+                    } else {
+                      return CheckboxListTile(
+                        value: childTasks[index].isDone,
+                        onChanged: (value) {
+                          // setState(() => widget.task[index].isDone = value);
+
+                          // TODO: ローカルデータを更新
+                        },
+                        title: Text(
+                          childTasks[index].title,
+                          style: TextStyle(
+                          ),
+                        ),
+                      );
+                    }
                   },
+                  itemCount: childTasks.length,
                 ),
               ),
-              SizedBox(width: 32.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(width: 32.0),
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                          hintText: "タスクを追加"
+                      ),
+                      onSubmitted: (String value) {
+                        if (value.trim().isEmpty) {
+                          return;
+                        }
+
+                        /*
+                        ChildTask newTask = ChildTask(value, false);
+                        setState(() {
+                          widget.task.add(newTask);
+                          _controller.clear();
+                        });
+
+                         */
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 32.0),
+                ],
+              ),
+              SizedBox(height: 24.0),
+              Text(
+                "広告枠",
+                style: TextStyle(
+                    fontSize: 56.0
+                ),
+              ),
             ],
-          ),
-          SizedBox(height: 24.0),
-          Text(
-            "広告枠",
-            style: TextStyle(
-              fontSize: 56.0
-            ),
-          ),
-        ],
-      )
+          );
+        }),
+      ),
     );
   }
 }

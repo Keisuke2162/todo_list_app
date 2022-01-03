@@ -1,6 +1,7 @@
 
 import 'package:check_list_app/task_model.dart';
 
+/*
 // テストデータ1: フットサル
 Task test1_1 = Task("シューズ", false);
 Task test1_2 = Task("ボール", false);
@@ -36,3 +37,5 @@ List<Task> taskList2 = [test2_1, test2_2, test2_3, test2_4, test2_5];
 ParentTask testParentTask2 = ParentTask("旅行", taskList2);
 
 List<ParentTask> testData = [testParentTask1, testParentTask2];
+
+ */
