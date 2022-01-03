@@ -30,10 +30,12 @@ class _ParentTaskView extends State<ParentTaskView> {
   @override
   Widget build(BuildContext context) {
 
+    final TaskModel taskModel = TaskModel();
+
     return ChangeNotifierProvider<TaskModel>(
 
       // 親タスクの一覧を取得
-      create: (_) => TaskModel()..fetchTaskData(),
+      create: (_) => TaskModel()..fetchParentTaskData(),
 
       child: Scaffold(
         appBar: AppBar(
@@ -90,9 +92,11 @@ class _ParentTaskView extends State<ParentTaskView> {
                           return;
                         }
 
-                        //ParentTask newParentTask = ParentTask(value, []);
                         setState(() {
-                          // testData.add(newParentTask);
+
+                          // 親タスクを追加
+                          taskModel.addParentTaskData(value);
+
                           _controller.clear();
                         });
                       },

@@ -33,7 +33,7 @@ class _TaskDetailView extends State<TaskDetailView> {
     return ChangeNotifierProvider(
 
       // 子タスクの一覧を取得
-      create: (_) => TaskModel()..getChildTaskList(widget.documentId),
+      create: (_) => TaskModel()..fetchChildTaskData(widget.documentId),
 
       child: Scaffold(
         appBar: AppBar(
