@@ -30,12 +30,11 @@ class _ParentTaskView extends State<ParentTaskView> {
   @override
   Widget build(BuildContext context) {
 
-    final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance.collection('tasks').snapshots();
-
-    final taskModel = TaskModel();
-
     return ChangeNotifierProvider<TaskModel>(
+
+      // 親タスクの一覧を取得
       create: (_) => TaskModel()..fetchTaskData(),
+
       child: Scaffold(
         appBar: AppBar(
           title: Text("TASK"),
@@ -45,8 +44,8 @@ class _ParentTaskView extends State<ParentTaskView> {
 
           final List<ParentTask> tasks = model.taskList;
 
-          if (tasks.isEmpty) {
-            return Text("データなし");
+          if (tasks == null) {
+            return Text("データの取得に失敗しました。");
           }
 
           return Column(

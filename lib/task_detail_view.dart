@@ -32,6 +32,7 @@ class _TaskDetailView extends State<TaskDetailView> {
 
     return ChangeNotifierProvider(
 
+      // 子タスクの一覧を取得
       create: (_) => TaskModel()..getChildTaskList(widget.documentId),
 
       child: Scaffold(
@@ -43,8 +44,8 @@ class _TaskDetailView extends State<TaskDetailView> {
         body: Consumer<TaskModel> (builder: (context, model, child) {
           final List<ChildTask> childTasks = model.childTaskList;
 
-          if (childTasks.isEmpty) {
-            return Text("データなし");
+          if (childTasks == null) {
+            return Text("データの取得に失敗しました。");
           }
 
           return Column(
