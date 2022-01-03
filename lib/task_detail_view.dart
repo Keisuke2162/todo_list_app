@@ -61,11 +61,9 @@ class _TaskDetailView extends State<TaskDetailView> {
                       return CheckboxListTile(
                         value: childTasks[index].isDone,
                         onChanged: (value) {
-                          // setState(() => widget.task[index].isDone = value);
 
                           taskModel.switchStateChildTaskData(widget.documentId, childTasks[index].documentId, value);
 
-                          // TODO: ローカルデータを更新
                         },
                         title: Text(
                           childTasks[index].title,
@@ -78,11 +76,9 @@ class _TaskDetailView extends State<TaskDetailView> {
                       return CheckboxListTile(
                         value: childTasks[index].isDone,
                         onChanged: (value) {
-                          // setState(() => widget.task[index].isDone = value);
 
                           taskModel.switchStateChildTaskData(widget.documentId, childTasks[index].documentId, value);
 
-                          // TODO: ローカルデータを更新
                         },
                         title: Text(
                           childTasks[index].title,
