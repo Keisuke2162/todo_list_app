@@ -99,6 +99,12 @@ class ChildTaskService extends ChangeNotifier {
   void deleteTask(String documentId) {
     dataPath.doc(documentId).delete();
   }
+
+  // 子タスクのisDone状態を更新
+  void switchStateChildTaskData(String childDocumentId, bool isDone) {
+
+    dataPath.doc(childDocumentId).update({'isDone': isDone});
+  }
 }
 
 
@@ -164,13 +170,13 @@ class TaskService extends ChangeNotifier {
 
     dataPath.add({'title': title});
   }
-  
+
   // 子タスクのデータを追加
   void addChildTaskData(String title, String documentId) {
 
     dataPath.doc(documentId).collection('childTasks').add({'title': title, 'isDone': false});
   }
-  
+
   // 子タスクのisDone状態を更新
   void switchStateChildTaskData(String parentDocumentId, String childDocumentId, bool isDone) {
 
