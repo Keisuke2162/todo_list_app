@@ -1,10 +1,39 @@
+import 'package:check_list_app/auth_service.dart';
 import 'package:check_list_app/task_detail_view.dart';
 import 'package:check_list_app/task_model.dart';
-import 'package:check_list_app/test_data.dart';
-import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+class ParentDbProcess extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    final taskService = Provider.of<ParentTaskService>(context);
+
+    taskService.uid = authService.user.uid;
+
+    return StreamBuilder<QuerySnapshot>(
+
+      stream: taskService.dataPath.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error');
+        }
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return CircularProgressIndicator();
+
+          default:
+
+            taskService.init(snapshot.data.docs);
+            return ParentTaskView();
+        }
+      },
+    );
+  }
+}
 
 class ParentTaskView extends StatefulWidget {
 
@@ -29,20 +58,88 @@ class _ParentTaskView extends State<ParentTaskView> {
 
   @override
   Widget build(BuildContext context) {
+    final taskService = Provider.of<ParentTaskService>(context);
 
-    final TaskModel taskModel = TaskModel();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TASK"),
+      ),
 
-    return ChangeNotifierProvider<TaskModel>(
+      body: Column(
+        children: [
+          Flexible(
+            child: ListView.builder(
+              itemCount: taskService.taskList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile (
+
+                  title: Text(taskService.taskList[index].title),
+                  onTap: () => {
+
+                    // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
+                    Navigator.push(
+                      context,
+                      // MaterialPageRoute(builder: (context) => TaskDetailView(taskService.taskList[index].documentId)),
+                      MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId)),
+                    )
+
+                  },
+                );
+              },
+            ),
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 32.0),
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  decoration: InputDecoration(
+                      hintText: "タスクを追加"
+                  ),
+                  onSubmitted: (String value) {
+                    if (value.trim().isEmpty) {
+                      return;
+                    }
+
+                    setState(() {
+
+                      // 親タスクを追加
+                      taskService.addTask(value);
+                      _controller.clear();
+                    });
+                  },
+                ),
+              ),
+              SizedBox(width: 32.0),
+            ],
+          ),
+          SizedBox(height: 24.0),
+          Text(
+            "広告枠",
+            style: TextStyle(
+                fontSize: 56.0
+            ),
+          ),
+        ],
+      )
+    );
+  }
+}
+
+    /*
+    return ChangeNotifierProvider<TaskService>(
 
       // 親タスクの一覧を取得
-      create: (_) => TaskModel()..fetchParentTaskData(),
+      create: (_) => TaskService()..fetchParentTaskData(),
 
       child: Scaffold(
         appBar: AppBar(
           title: Text("TASK"),
         ),
-        body: Consumer<TaskModel> (builder: (context, model, child) {
-
+        body: Consumer<TaskService> (builder: (context, model, child) {
 
           final List<ParentTask> tasks = model.taskList;
 
@@ -55,9 +152,6 @@ class _ParentTaskView extends State<ParentTaskView> {
               Flexible(
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
-
-                    // 子タスク一覧
-                    List<ChildTask> childTasks = [];
 
                     return ListTile (
 
@@ -95,7 +189,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                         setState(() {
 
                           // 親タスクを追加
-                          taskModel.addParentTaskData(value);
+                          taskService.addParentTaskData(value);
 
                           _controller.clear();
                         });
@@ -117,5 +211,4 @@ class _ParentTaskView extends State<ParentTaskView> {
         }),
       )
     );
-  }
-}
+    */

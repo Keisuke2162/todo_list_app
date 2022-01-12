@@ -1,12 +1,26 @@
-import 'package:check_list_app/parent_task_view.dart';
+import 'package:check_list_app/SignProcess.dart';
+import 'package:check_list_app/auth_service.dart';
+import 'package:check_list_app/task_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthService.instance()),
+        ChangeNotifierProvider(create: (_) => ParentTaskService()),
+        ChangeNotifierProvider(create: (_) => ChildTaskService())
+      ],
+      child: MyApp(),
+    )
+  );
+
+  // runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ParentTaskView(),
+      home: SignProcess(),
     );
   }
 }

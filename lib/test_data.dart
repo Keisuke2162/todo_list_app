@@ -1,6 +1,4 @@
 
-import 'package:check_list_app/task_model.dart';
-
 /*
 // テストデータ1: フットサル
 Task test1_1 = Task("シューズ", false);
