@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:check_list_app/sign_process.dart';
 import 'package:check_list_app/auth_service.dart';
 import 'package:check_list_app/child_task_service.dart';
@@ -9,6 +10,9 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  Admob.initialize();
 
   runApp(
     MultiProvider(
