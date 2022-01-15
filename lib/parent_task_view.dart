@@ -132,7 +132,9 @@ class _ParentTaskView extends State<ParentTaskView> {
               SizedBox(width: 32.0),
             ],
           ),
+
           SizedBox(height: 24.0),
+
           Text(
             "広告枠",
             style: TextStyle(
