@@ -1,6 +1,6 @@
 import 'package:check_list_app/auth_service.dart';
-import 'package:check_list_app/task_detail_view.dart';
-import 'package:check_list_app/task_model.dart';
+import 'package:check_list_app/child_task_view.dart';
+import 'package:check_list_app/parent_task_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,19 +70,36 @@ class _ParentTaskView extends State<ParentTaskView> {
             child: ListView.builder(
               itemCount: taskService.taskList.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile (
-
-                  title: Text(taskService.taskList[index].title),
-                  onTap: () => {
-
-                    // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
-                    Navigator.push(
-                      context,
-                      // MaterialPageRoute(builder: (context) => TaskDetailView(taskService.taskList[index].documentId)),
-                      MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId)),
-                    )
-
+                return Dismissible(
+                  key: Key(taskService.taskList[index].documentId),
+                  background: Container(
+                    padding: EdgeInsets.only(right: 10),
+                    alignment: AlignmentDirectional.centerEnd,
+                    color: Colors.red,
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                  ),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    // スワイプでタスクを削除する
+                    taskService.deleteTask(taskService.taskList[index].documentId);
                   },
+
+                  child: ListTile (
+
+                    title: Text(taskService.taskList[index].title),
+                    onTap: () => {
+
+                      // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
+                      )
+
+                    },
+                  ),
                 );
               },
             ),
