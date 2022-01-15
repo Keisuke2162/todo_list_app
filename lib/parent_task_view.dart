@@ -1,6 +1,8 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:check_list_app/auth_service.dart';
 import 'package:check_list_app/child_task_view.dart';
 import 'package:check_list_app/parent_task_service.dart';
+import 'package:check_list_app/service/admob.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,84 +66,88 @@ class _ParentTaskView extends State<ParentTaskView> {
         title: Text("TASK"),
       ),
 
-      body: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-              itemCount: taskService.taskList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Dismissible(
-                  key: Key(taskService.taskList[index].documentId),
-                  background: Container(
-                    padding: EdgeInsets.only(right: 10),
-                    alignment: AlignmentDirectional.centerEnd,
-                    color: Colors.red,
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+                itemCount: taskService.taskList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Dismissible(
+                    key: Key(taskService.taskList[index].documentId),
+                    background: Container(
+                      padding: EdgeInsets.only(right: 10),
+                      alignment: AlignmentDirectional.centerEnd,
+                      color: Colors.red,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  direction: DismissDirection.endToStart,
-                  onDismissed: (direction) {
-                    // スワイプでタスクを削除する
-                    taskService.deleteTask(taskService.taskList[index].documentId);
-                  },
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      // スワイプでタスクを削除する
+                      taskService.deleteTask(taskService.taskList[index].documentId);
+                    },
 
-                  child: ListTile (
+                    child: ListTile (
 
-                    title: Text(taskService.taskList[index].title),
-                    onTap: () => {
+                      title: Text(taskService.taskList[index].title),
+                      onTap: () => {
 
-                      // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
-                      )
+                        // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
+                        )
 
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 32.0),
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                        hintText: "タスクを追加"
+                    ),
+                    onSubmitted: (String value) {
+                      if (value.trim().isEmpty) {
+                        return;
+                      }
+
+                      setState(() {
+
+                        // 親タスクを追加
+                        taskService.addTask(value);
+                        _controller.clear();
+                      });
                     },
                   ),
-                );
-              },
-            ),
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(width: 32.0),
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                      hintText: "タスクを追加"
-                  ),
-                  onSubmitted: (String value) {
-                    if (value.trim().isEmpty) {
-                      return;
-                    }
-
-                    setState(() {
-
-                      // 親タスクを追加
-                      taskService.addTask(value);
-                      _controller.clear();
-                    });
-                  },
                 ),
-              ),
-              SizedBox(width: 32.0),
-            ],
-          ),
-
-          SizedBox(height: 24.0),
-
-          Text(
-            "広告枠",
-            style: TextStyle(
-                fontSize: 56.0
+                SizedBox(width: 32.0),
+              ],
             ),
-          ),
-        ],
+
+            SizedBox(height: 24.0),
+
+            AdmobBanner(
+              adUnitId: AdMobService().getBannerAdUnitId(),
+              adSize: AdmobBannerSize(
+                width: MediaQuery.of(context).size.width.toInt(),
+                height: AdMobService().getHeight(context).toInt(),
+                name: 'SMART_BANNER',
+              )
+            ),
+          ],
+        ),
       )
     );
   }

@@ -1,4 +1,6 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:check_list_app/child_task_service.dart';
+import 'package:check_list_app/service/admob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,117 +88,121 @@ class _ChildTaskView extends State<ChildTaskView> {
         ],
       ),
 
-      body: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
+      body: SafeArea(
+        child: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
 
-                // TODO: Widget1つにまとめる
-                if (taskService.taskList[index].isDone) {
-                  return Dismissible(
-                    key: Key(taskService.taskList[index].documentId),
-                    background: Container(
-                      padding: EdgeInsets.only(right: 10),
-                      alignment: AlignmentDirectional.centerEnd,
-                      color: Colors.red,
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
-                    ),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      // タスクを削除
-                      taskService.deleteTask(taskService.taskList[index].documentId);
-                    },
-
-                    child: CheckboxListTile(
-                      value: taskService.taskList[index].isDone,
-                      onChanged: (value) {
-                        taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
-                      },
-                      title: Text(
-                        taskService.taskList[index].title,
-                        style: TextStyle(
-                            decoration: TextDecoration.lineThrough
+                  // TODO: Widget1つにまとめる
+                  if (taskService.taskList[index].isDone) {
+                    return Dismissible(
+                      key: Key(taskService.taskList[index].documentId),
+                      background: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        alignment: AlignmentDirectional.centerEnd,
+                        color: Colors.red,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  );
-                } else {
-                  return Dismissible(
-                    key: Key(taskService.taskList[index].documentId),
-                    background: Container(
-                      padding: EdgeInsets.only(right: 10),
-                      alignment: AlignmentDirectional.centerEnd,
-                      color: Colors.red,
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
-                    ),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      // タスクを削除
-                      taskService.deleteTask(taskService.taskList[index].documentId);
-                    },
-
-                    child: CheckboxListTile(
-                      value: taskService.taskList[index].isDone,
-                      onChanged: (value) {
-                        taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        // タスクを削除
+                        taskService.deleteTask(taskService.taskList[index].documentId);
                       },
-                      title: Text(
-                        taskService.taskList[index].title,
-                        style: TextStyle(
+
+                      child: CheckboxListTile(
+                        value: taskService.taskList[index].isDone,
+                        onChanged: (value) {
+                          taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
+                        },
+                        title: Text(
+                          taskService.taskList[index].title,
+                          style: TextStyle(
+                              decoration: TextDecoration.lineThrough
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }
-              },
-              itemCount: taskService.taskList.length,
-            ),
-          ),
+                    );
+                  } else {
+                    return Dismissible(
+                      key: Key(taskService.taskList[index].documentId),
+                      background: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        alignment: AlignmentDirectional.centerEnd,
+                        color: Colors.red,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        // タスクを削除
+                        taskService.deleteTask(taskService.taskList[index].documentId);
+                      },
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(width: 32.0),
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                      hintText: "タスクを追加"
-                  ),
-                  onSubmitted: (String value) {
-                    if (value.trim().isEmpty) {
-                      return;
-                    }
-
-                    setState(() {
-
-                      taskService.addTask(value);
-                      _controller.clear();
-                    });
-
-                  },
-                ),
+                      child: CheckboxListTile(
+                        value: taskService.taskList[index].isDone,
+                        onChanged: (value) {
+                          taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
+                        },
+                        title: Text(
+                          taskService.taskList[index].title,
+                          style: TextStyle(
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
+                itemCount: taskService.taskList.length,
               ),
-              SizedBox(width: 32.0),
-            ],
-          ),
-
-          SizedBox(height: 24.0),
-
-          Text(
-            "広告枠",
-            style: TextStyle(
-                fontSize: 56.0
             ),
-          ),
-        ],
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 32.0),
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                        hintText: "タスクを追加"
+                    ),
+                    onSubmitted: (String value) {
+                      if (value.trim().isEmpty) {
+                        return;
+                      }
+
+                      setState(() {
+
+                        taskService.addTask(value);
+                        _controller.clear();
+                      });
+
+                    },
+                  ),
+                ),
+                SizedBox(width: 32.0),
+              ],
+            ),
+
+            SizedBox(height: 24.0),
+
+            AdmobBanner(
+                adUnitId: AdMobService().getBannerAdUnitId(),
+                adSize: AdmobBannerSize(
+                  width: MediaQuery.of(context).size.width.toInt(),
+                  height: AdMobService().getHeight(context).toInt(),
+                  name: 'SMART_BANNER',
+                )
+            ),
+          ],
+        ),
       ),
     );
   }
