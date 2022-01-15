@@ -90,18 +90,23 @@ class _ParentTaskView extends State<ParentTaskView> {
                       taskService.deleteTask(taskService.taskList[index].documentId);
                     },
 
-                    child: ListTile (
+                    child: Column (
+                      children: [
+                        ListTile (
 
-                      title: Text(taskService.taskList[index].title),
-                      onTap: () => {
+                          title: Text(taskService.taskList[index].title),
+                          onTap: () => {
 
-                        // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
-                        )
+                            // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
+                            )
 
-                      },
+                          },
+                        ),
+                        Divider(),
+                      ]
                     ),
                   );
                 },

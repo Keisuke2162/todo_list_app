@@ -114,17 +114,23 @@ class _ChildTaskView extends State<ChildTaskView> {
                         taskService.deleteTask(taskService.taskList[index].documentId);
                       },
 
-                      child: CheckboxListTile(
-                        value: taskService.taskList[index].isDone,
-                        onChanged: (value) {
-                          taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
-                        },
-                        title: Text(
-                          taskService.taskList[index].title,
-                          style: TextStyle(
-                              decoration: TextDecoration.lineThrough
+                      child: Column (
+                        children: [
+                          CheckboxListTile(
+                            value: taskService.taskList[index].isDone,
+                            onChanged: (value) {
+                              taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
+                            },
+                            title: Text(
+                              taskService.taskList[index].title,
+                              style: TextStyle(
+                                  decoration: TextDecoration.lineThrough
+                              ),
+                            ),
                           ),
-                        ),
+
+                          Divider(),
+                        ]
                       ),
                     );
                   } else {
@@ -145,16 +151,20 @@ class _ChildTaskView extends State<ChildTaskView> {
                         taskService.deleteTask(taskService.taskList[index].documentId);
                       },
 
-                      child: CheckboxListTile(
-                        value: taskService.taskList[index].isDone,
-                        onChanged: (value) {
-                          taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
-                        },
-                        title: Text(
-                          taskService.taskList[index].title,
-                          style: TextStyle(
+                      child: Column (
+                        children: [
+                          CheckboxListTile(
+                            value: taskService.taskList[index].isDone,
+                            onChanged: (value) {
+                              taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
+                            },
+                            title: Text(
+                              taskService.taskList[index].title,
+                              style: TextStyle(
+                              ),
+                            ),
                           ),
-                        ),
+                        ]
                       ),
                     );
                   }
