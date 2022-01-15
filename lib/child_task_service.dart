@@ -5,16 +5,19 @@ class ChildTask {
   String _title;
   bool _isDone;
   String _documentId;
+  Timestamp _createdAt;
 
-  ChildTask(this._title, this._isDone, this._documentId);
+  ChildTask(this._title, this._isDone, this._documentId, this._createdAt);
 
   String get title => _title;
   bool get isDone => _isDone;
   String get documentId => _documentId;
+  Timestamp get createdAt => _createdAt;
 
   ChildTask.fromMap(map) {
     _title = map['title'];
     _isDone = map['isDone'];
+    _createdAt = map['createdAt'];
     _documentId = map.id;
   }
 
@@ -22,6 +25,7 @@ class ChildTask {
     var map = <String, dynamic>{};
     map['title'] = _title;
     map['isDone'] = _isDone;
+    map['createdAt'] = _createdAt;
     return map;
   }
 }
@@ -44,7 +48,7 @@ class ChildTaskService extends ChangeNotifier {
 
   // 子タスクを追加
   void addTask(String title) {
-    dataPath.add({'title': title, 'isDone': false});
+    dataPath.add({'title': title, 'isDone': false, 'createdAt': DateTime.now()});
   }
 
   // 子タスクを削除

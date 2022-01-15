@@ -4,20 +4,24 @@ import 'package:flutter/foundation.dart';
 class ParentTask {
   String _title;
   String _documentId;
+  Timestamp _createdAt;
 
-  ParentTask(this._title, this._documentId);
+  ParentTask(this._title, this._documentId, this._createdAt);
 
   String get title => _title;
   String get documentId => _documentId;
+  Timestamp get createdAt => _createdAt;
 
   ParentTask.fromMap(map) {
     _title = map['title'];
+    _createdAt = map['createdAt'];
     _documentId = map.id;
   }
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
     map['title'] = _title;
+    map['createdAt'] = _createdAt;
     return map;
   }
 }
@@ -38,7 +42,7 @@ class ParentTaskService extends ChangeNotifier {
 
   // 親タスクを追加
   void addTask(String title) {
-    dataPath.add({'title': title});
+    dataPath.add({'title': title, 'createdAt': DateTime.now()});
   }
 
   // 親タスクを削除
