@@ -74,8 +74,10 @@ class _ParentTaskView extends State<ParentTaskView> {
       body: SafeArea(
         child: Column(
           children: [
+            SizedBox(height: 8.0,),
             Flexible(
               child: ListView.builder(
+                itemExtent: 72.0,
                 itemCount: taskService.taskList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Dismissible(
@@ -97,12 +99,8 @@ class _ParentTaskView extends State<ParentTaskView> {
 
                     child: Column (
                       children: [
-                        SizedBox(height: 2.0,),
                         ListTile (
-                          title: Container(
-                            height: 16.0,
-                            child: Text(taskService.taskList[index].title),
-                          ),
+                          title: Text(taskService.taskList[index].title),
                           onTap: () => {
                             // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
                             Navigator.push(
@@ -111,7 +109,6 @@ class _ParentTaskView extends State<ParentTaskView> {
                             )
                           },
                         ),
-                        SizedBox(height: 2.0,),
                         Divider(),
                       ]
                     ),
