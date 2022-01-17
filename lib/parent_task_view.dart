@@ -63,7 +63,7 @@ class _ParentTaskView extends State<ParentTaskView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("TASK"),
+        title: Icon(Icons.check),
       ),
 
       body: SafeArea(
@@ -121,7 +121,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                   child: TextField(
                     controller: _controller,
                     decoration: InputDecoration(
-                        hintText: "タスクを追加"
+                      hintText: "タイトルを追加"
                     ),
                     onSubmitted: (String value) {
                       if (value.trim().isEmpty) {
