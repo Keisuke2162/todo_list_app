@@ -24,10 +24,12 @@ class ParentDbProcess extends StatelessWidget {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return CircularProgressIndicator();
-
+            return SizedBox(
+              height: 50.0,
+              width: 50.0,
+              child: CircularProgressIndicator(),
+            );
           default:
-
             taskService.init(snapshot.data.docs);
             return ParentTaskView();
         }
@@ -63,7 +65,10 @@ class _ParentTaskView extends State<ParentTaskView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Icon(Icons.check),
+        title: Icon(
+          Icons.check,
+          size: 28.0,
+        ),
       ),
 
       body: SafeArea(
@@ -92,19 +97,21 @@ class _ParentTaskView extends State<ParentTaskView> {
 
                     child: Column (
                       children: [
+                        SizedBox(height: 2.0,),
                         ListTile (
-
-                          title: Text(taskService.taskList[index].title),
+                          title: Container(
+                            height: 16.0,
+                            child: Text(taskService.taskList[index].title),
+                          ),
                           onTap: () => {
-
                             // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
                             )
-
                           },
                         ),
+                        SizedBox(height: 2.0,),
                         Divider(),
                       ]
                     ),
@@ -140,9 +147,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                 SizedBox(width: 32.0),
               ],
             ),
-
             SizedBox(height: 24.0),
-
             AdmobBanner(
               adUnitId: AdMobService().getBannerAdUnitId(),
               adSize: AdmobBannerSize(

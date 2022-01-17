@@ -116,19 +116,23 @@ class _ChildTaskView extends State<ChildTaskView> {
 
                       child: Column (
                         children: [
+                          SizedBox(height: 2.0),
                           CheckboxListTile(
                             value: taskService.taskList[index].isDone,
                             onChanged: (value) {
                               taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
                             },
-                            title: Text(
-                              taskService.taskList[index].title,
-                              style: TextStyle(
+                            title: Container(
+                              height: 16.0,
+                              child: Text(
+                                taskService.taskList[index].title,
+                                style: TextStyle(
                                   decoration: TextDecoration.lineThrough
+                                ),
                               ),
-                            ),
+                            )
                           ),
-
+                          SizedBox(height: 2.0),
                           Divider(),
                         ]
                       ),
@@ -153,17 +157,21 @@ class _ChildTaskView extends State<ChildTaskView> {
 
                       child: Column (
                         children: [
+                          SizedBox(height: 2.0),
                           CheckboxListTile(
                             value: taskService.taskList[index].isDone,
                             onChanged: (value) {
                               taskService.switchStateChildTaskData(taskService.taskList[index].documentId, value);
                             },
-                            title: Text(
-                              taskService.taskList[index].title,
-                              style: TextStyle(
+                            title: Container(
+                              height: 16.0,
+                              child: Text(
+                                taskService.taskList[index].title,
                               ),
-                            ),
+                            )
                           ),
+                          SizedBox(height: 2.0),
+                          Divider(),
                         ]
                       ),
                     );
