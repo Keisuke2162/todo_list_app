@@ -46,7 +46,6 @@ class ParentTaskView extends StatefulWidget {
 
 class _ParentTaskView extends State<ParentTaskView> {
   TextEditingController _controller;
-
   @override
   void initState() {
     super.initState();
