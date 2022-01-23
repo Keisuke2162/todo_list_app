@@ -30,7 +30,6 @@ class ChildDbProcess extends StatelessWidget {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            // return CircularProgressIndicator();
             return ChildTaskView("", "");
 
           default:

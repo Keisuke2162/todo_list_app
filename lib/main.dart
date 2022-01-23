@@ -24,7 +24,6 @@ void main() async {
       child: MyApp(),
     )
   );
-
   // runApp(MyApp());
 }
 

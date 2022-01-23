@@ -24,16 +24,29 @@ class ParentDbProcess extends StatelessWidget {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return SizedBox(
-              height: 50.0,
-              width: 50.0,
-              child: CircularProgressIndicator(),
-            );
+            return LoadingView();
           default:
             taskService.init(snapshot.data.docs);
             return ParentTaskView();
         }
       },
+    );
+  }
+}
+
+class LoadingView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      color: Colors.indigo,
+      child: Center(
+        child: Icon(
+          Icons.check,
+          size: 40.0,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }
