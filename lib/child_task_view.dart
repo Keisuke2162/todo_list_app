@@ -92,15 +92,19 @@ class _ChildTaskView extends State<ChildTaskView> {
           children: [
             SizedBox(height: 8.0,),
             Flexible(
+              // ドラッグ&ドロップできるListView
               child: ReorderableListView.builder(
                 // itemExtent: 72,
 
+                // ドラッグ&ドロップを行った後に実行される（onRecorder）
                 onReorder: (oldIndex, newIndex) {
+                  // 並べ替え処理
                   if (oldIndex < newIndex) {
                     newIndex -= 1;
                   }
                   var task = taskService.taskList.removeAt(oldIndex);
                   taskService.taskList.insert(newIndex, task);
+                  // 並べ替え後のorderをfirestoreに保存
                   taskService.sortChildTasks();
                 },
                 itemBuilder: (BuildContext context, int index) {
