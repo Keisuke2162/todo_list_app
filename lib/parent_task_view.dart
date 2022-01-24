@@ -4,6 +4,7 @@ import 'package:check_list_app/child_task_view.dart';
 import 'package:check_list_app/parent_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -117,7 +118,8 @@ class _ParentTaskView extends State<ParentTaskView> {
                             // 子タスク一覧画面に遷移（親タスクのドキュメントIDを渡す）
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
+                              CupertinoPageRoute(builder: (context) =>  ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
+                              // MaterialPageRoute(builder: (context) => ChildDbProcess(taskService.uid, taskService.taskList[index].documentId, taskService.taskList[index].title)),
                             )
                           },
                         ),
