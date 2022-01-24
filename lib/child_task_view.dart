@@ -23,7 +23,7 @@ class ChildDbProcess extends StatelessWidget {
 
     return StreamBuilder<QuerySnapshot>(
 
-      stream: taskService.dataPath.orderBy('createdAt').snapshots(),
+      stream: taskService.dataPath.orderBy('order').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Error');
