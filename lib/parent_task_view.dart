@@ -131,34 +131,47 @@ class _ParentTaskView extends State<ParentTaskView> {
               ),
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: 32.0),
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: "タイトルを追加"
-                    ),
-                    onSubmitted: (String value) {
-                      if (value.trim().isEmpty) {
-                        return;
-                      }
-
-                      setState(() {
-
-                        // 親タスクを追加
-                        taskService.addTask(value);
-                        _controller.clear();
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 32.0),
-              ],
+            Container(
+              height: 16.0,
+              color: Colors.indigo,
             ),
-            SizedBox(height: 24.0),
+
+            Container(
+              color: Colors.white60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(width: 24.0),
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: "タイトルを追加"
+                      ),
+                      onSubmitted: (String value) {
+                        if (value.trim().isEmpty) {
+                          return;
+                        }
+
+                        setState(() {
+
+                          // 親タスクを追加
+                          taskService.addTask(value);
+                          _controller.clear();
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 24.0),
+                ],
+              ),
+            ),
+
+            Container(
+              height: 16.0,
+              color: Colors.indigo,
+            ),
+
             AdmobBanner(
               adUnitId: AdMobService().getBannerAdUnitId(),
               adSize: AdmobBannerSize(
