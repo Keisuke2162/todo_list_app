@@ -92,8 +92,17 @@ class _ChildTaskView extends State<ChildTaskView> {
           children: [
             SizedBox(height: 8.0,),
             Flexible(
-              child: ListView.builder(
-                itemExtent: 72,
+              child: ReorderableListView.builder(
+                // itemExtent: 72,
+
+                onReorder: (oldIndex, newIndex) {
+                  if (oldIndex < newIndex) {
+                    newIndex -= 1;
+                  }
+                  var task = taskService.taskList.removeAt(oldIndex);
+                  taskService.taskList.insert(newIndex, task);
+                  taskService.sortChildTasks();
+                },
                 itemBuilder: (BuildContext context, int index) {
 
                   // TODO: Widget1つにまとめる
