@@ -71,14 +71,14 @@ class ChildTaskService extends ChangeNotifier {
   }
 
   // タスクのisDone状態を全てクリアする
-  void clearStateChildTask() {
+  void clearStateChildTask() async {
     for (var task in _taskList) {
       switchStateChildTaskData(task.documentId, false);
     }
   }
 
   // タスクの並び順を変更する
-  void sortChildTasks() {
+  void sortChildTasks() async {
     for (var i = 0; i < _taskList.length; i++) {
       updateOrder(_taskList[i].documentId, i);
     }
