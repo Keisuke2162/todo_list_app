@@ -137,32 +137,41 @@ class _ParentTaskView extends State<ParentTaskView> {
             ),
 
             Container(
-              color: Colors.white60,
+              color: Colors.indigo,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(width: 24.0),
+                  Container(
+                    width: 16.0,
+                  ),
                   Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        hintText: "タイトルを追加"
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
                       ),
-                      onSubmitted: (String value) {
-                        if (value.trim().isEmpty) {
-                          return;
-                        }
-
-                        setState(() {
-
-                          // 親タスクを追加
-                          taskService.addTask(value);
-                          _controller.clear();
-                        });
-                      },
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          hintText: "タイトルを追加"
+                        ),
+                        onSubmitted: (String value) {
+                          if (value.trim().isEmpty) {
+                            return;
+                          }
+                          setState(() {
+                            // 親タスクを追加
+                            taskService.addTask(value);
+                            _controller.clear();
+                          });
+                        },
+                      ),
                     ),
                   ),
-                  SizedBox(width: 24.0),
+                  Container(
+                    width: 16.0,
+                  ),
                 ],
               ),
             ),
