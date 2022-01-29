@@ -3,6 +3,7 @@ import 'package:check_list_app/auth_service.dart';
 import 'package:check_list_app/child_task_view.dart';
 import 'package:check_list_app/parent_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
+import 'package:check_list_app/user_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      color: Colors.indigo,
+      color: mainColor,
       child: Center(
         child: Icon(
           Icons.check,
@@ -133,11 +134,11 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: Colors.indigo,
+              color: mainColor,
             ),
 
             Container(
-              color: Colors.indigo,
+              color: mainColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -146,7 +147,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                   ),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white,
@@ -178,7 +179,7 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: Colors.indigo,
+              color: mainColor,
             ),
 
             AdmobBanner(

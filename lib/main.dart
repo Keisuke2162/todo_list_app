@@ -3,6 +3,7 @@ import 'package:check_list_app/sign_process.dart';
 import 'package:check_list_app/auth_service.dart';
 import 'package:check_list_app/child_task_service.dart';
 import 'package:check_list_app/parent_task_service.dart';
+import 'package:check_list_app/user_data.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'OpenSansCondensed',
-        primarySwatch: Colors.indigo,
+        primarySwatch: mainColor,
       ),
       home: SignProcess(),
     );
