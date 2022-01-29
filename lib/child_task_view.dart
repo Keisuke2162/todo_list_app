@@ -1,6 +1,7 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:check_list_app/child_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
+import 'package:check_list_app/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -184,36 +185,54 @@ class _ChildTaskView extends State<ChildTaskView> {
                 itemCount: taskService.taskList.length,
               ),
             ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: 32.0),
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                        hintText: "タスクを追加"
-                    ),
-                    onSubmitted: (String value) {
-                      if (value.trim().isEmpty) {
-                        return;
-                      }
-
-                      setState(() {
-
-                        taskService.addTask(value);
-                        _controller.clear();
-                      });
-
-                    },
-                  ),
-                ),
-                SizedBox(width: 32.0),
-              ],
+            Container(
+              height: 16.0,
+              color: mainColor,
             ),
 
-            SizedBox(height: 24.0),
+            Container(
+              color: mainColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(width: 16.0),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                      ),
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "タスクを追加"
+                        ),
+                        onSubmitted: (String value) {
+                          if (value.trim().isEmpty) {
+                            return;
+                          }
+
+                          setState(() {
+
+                            taskService.addTask(value);
+                            _controller.clear();
+                          });
+
+                        },
+                      ),
+                    ),
+                  ),
+                  Container(width: 16.0),
+                ],
+              ),
+            ),
+
+            Container(
+              height: 16.0,
+              color: mainColor,
+            ),
 
             AdmobBanner(
                 adUnitId: AdMobService().getBannerAdUnitId(),

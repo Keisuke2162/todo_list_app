@@ -142,12 +142,10 @@ class _ParentTaskView extends State<ParentTaskView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 16.0,
-                  ),
+                  Container(width: 16.0),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white,
@@ -155,6 +153,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                       child: TextField(
                         controller: _controller,
                         decoration: InputDecoration(
+                          border: InputBorder.none,
                           hintText: "タイトルを追加"
                         ),
                         onSubmitted: (String value) {
@@ -170,9 +169,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 16.0,
-                  ),
+                  Container(width: 16.0,),
                 ],
               ),
             ),
