@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-// 設定データ
+class AppSettings extends ChangeNotifier {
+  AppSettings();
 
-// テーマカラー
-MaterialColor mainColor = Colors.indigo;
+  // 設定データ
 
-// アプリアイコン
+  // テーマカラー
+  MaterialColor mainColor = Colors.cyan;
 
-// フォント
+  // アプリアイコン
+
+  // フォント
+}
 

@@ -37,11 +37,13 @@ class ParentDbProcess extends StatelessWidget {
 }
 
 class LoadingView extends StatelessWidget {
+  final appSetting = AppSettings();
+
   @override
   Widget build(BuildContext context) {
 
     return Container(
-      color: mainColor,
+      color: appSetting.mainColor,
       child: Center(
         child: Icon(
           Icons.check,
@@ -76,6 +78,7 @@ class _ParentTaskView extends State<ParentTaskView> {
   @override
   Widget build(BuildContext context) {
     final taskService = Provider.of<ParentTaskService>(context);
+    final appSetting = AppSettings();
 
     return Scaffold(
       appBar: AppBar(
@@ -134,11 +137,11 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: mainColor,
+              color: appSetting.mainColor,
             ),
 
             Container(
-              color: mainColor,
+              color: appSetting.mainColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -150,6 +153,7 @@ class _ParentTaskView extends State<ParentTaskView> {
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white,
                       ),
+
                       child: TextField(
                         controller: _controller,
                         decoration: InputDecoration(
@@ -176,7 +180,7 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: mainColor,
+              color: appSetting.mainColor,
             ),
 
             AdmobBanner(

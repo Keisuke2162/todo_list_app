@@ -74,6 +74,7 @@ class _ChildTaskView extends State<ChildTaskView> {
   Widget build(BuildContext context) {
 
     final taskService = Provider.of<ChildTaskService>(context);
+    final appSetting = AppSettings();
 
     return Scaffold(
       appBar: AppBar(
@@ -187,11 +188,11 @@ class _ChildTaskView extends State<ChildTaskView> {
             ),
             Container(
               height: 16.0,
-              color: mainColor,
+              color: appSetting.mainColor,
             ),
 
             Container(
-              color: mainColor,
+              color: appSetting.mainColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -231,7 +232,7 @@ class _ChildTaskView extends State<ChildTaskView> {
 
             Container(
               height: 16.0,
-              color: mainColor,
+              color: appSetting.mainColor,
             ),
 
             AdmobBanner(
