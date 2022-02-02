@@ -1,4 +1,4 @@
-import 'package:check_list_app/theme_type.dart';
+import 'package:check_list_app/theme/theme_type.dart';
 import 'package:flutter/material.dart';
 
 class ThemeColorPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _ThemeColorPage extends State<ThemeColorPage> {
                     ),
                     title: Text(themeColors[index].name),
                     onTap: () => {
-                      
+
                     },
                   ),
                 ),
