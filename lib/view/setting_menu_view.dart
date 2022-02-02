@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:check_list_app/user_data.dart';
 
@@ -20,8 +21,13 @@ class SettingMenuView extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(menuList[index].title),
-                  onTap: () => {
-
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => menuList[index].page
+                      )
+                    );
                   },
                 ),
                 Divider(),
