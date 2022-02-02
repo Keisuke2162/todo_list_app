@@ -1,7 +1,7 @@
-import 'package:check_list_app/parent_task_view.dart';
+import 'package:check_list_app/view/parent_task_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:check_list_app/auth_service.dart';
+import 'package:check_list_app/service/auth_service.dart';
 
 class SignProcess extends StatelessWidget {
   @override
