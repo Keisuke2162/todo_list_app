@@ -24,5 +24,5 @@ class MenuData {
 
 List<MenuData> menuList = [
   MenuData('テーマカラー', ThemeColorPage()),
-  MenuData('アイコン変更', ThemeColorPage())
+  // MenuData('アイコン変更', ThemeColorPage())
 ];

@@ -68,7 +68,6 @@ class DynamicThemeState extends State<DynamicTheme> {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String loadColorStr = prefs.getString(_themeColorKey) ?? "red";
-    print("テスト：${loadColorStr}");
     _color = themeType[loadColorStr];
     _themeData = widget.data(_color);
 
@@ -106,7 +105,6 @@ class DynamicThemeState extends State<DynamicTheme> {
     });
     // 保存
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print("テスト：SAVE${newColor}");
     await prefs.setString(_themeColorKey, newColor);
   }
 
