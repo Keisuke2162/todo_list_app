@@ -6,7 +6,7 @@ class AppSettings extends ChangeNotifier {
   // 設定データ
 
   // テーマカラー
-  Color mainColor = Colors.red;
+  // Color mainColor = Colors.red;
 
   // アプリアイコン
 

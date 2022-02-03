@@ -1,3 +1,4 @@
+import 'package:check_list_app/theme/dynamic_theme.dart';
 import 'package:check_list_app/theme/theme_type.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,10 @@ class _ThemeColorPage extends State<ThemeColorPage> {
                     ),
                     title: Text(themeColors[index].name),
                     onTap: () => {
-
+                      DynamicTheme.of(context).setThemeColor(themeColors[index].name),
+                      DynamicTheme.of(context).setThemeData(
+                        ThemeData(primarySwatch: themeColors[index].color)
+                      )
                     },
                   ),
                 ),

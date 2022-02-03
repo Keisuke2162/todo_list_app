@@ -1,5 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:check_list_app/service/auth_service.dart';
+import 'package:check_list_app/theme/dynamic_theme.dart';
 import 'package:check_list_app/view/child_task_view.dart';
 import 'package:check_list_app/service/parent_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
@@ -44,7 +45,8 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      color: appSetting.mainColor,
+      // color: Theme.of(context).primaryColor,
+      color: DynamicTheme.of(context).color,
       child: Center(
         child: Icon(
           Icons.check,
@@ -79,7 +81,6 @@ class _ParentTaskView extends State<ParentTaskView> {
   @override
   Widget build(BuildContext context) {
     final taskService = Provider.of<ParentTaskService>(context);
-    final appSetting = AppSettings();
 
     return Scaffold(
       appBar: AppBar(
@@ -152,11 +153,11 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             Container(
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -195,7 +196,7 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             AdmobBanner(

@@ -1,4 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:check_list_app/theme/dynamic_theme.dart';
 import 'package:check_list_app/view/sign_process.dart';
 import 'package:check_list_app/service/auth_service.dart';
 import 'package:check_list_app/service/child_task_service.dart';
@@ -33,13 +34,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'OpenSansCondensed',
-        primarySwatch: appSetting.mainColor,
+    return DynamicTheme(
+      // defaultColor: Colors.indigo,
+      data: (MaterialColor primarySwatch) => ThemeData(
+        primarySwatch: primarySwatch
       ),
-      home: SignProcess(),
+      loadThemeColorOnStart: true,
+      themedWidgetBuilder: (context, theme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          /*
+          theme: ThemeData(
+            fontFamily: 'OpenSansCondensed',
+            primarySwatch: appSetting.mainColor,
+          ),
+
+           */
+          home: SignProcess(),
+        );
+      },
     );
   }
 }
