@@ -19,6 +19,7 @@ class ParentTask {
   }
 
   Map<String, dynamic> toMap() {
+
     var map = <String, dynamic>{};
     map['title'] = _title;
     map['createdAt'] = _createdAt;

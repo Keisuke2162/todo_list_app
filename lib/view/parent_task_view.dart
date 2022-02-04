@@ -1,9 +1,11 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:check_list_app/auth_service.dart';
-import 'package:check_list_app/child_task_view.dart';
-import 'package:check_list_app/parent_task_service.dart';
+import 'package:check_list_app/service/auth_service.dart';
+import 'package:check_list_app/theme/dynamic_theme.dart';
+import 'package:check_list_app/view/child_task_view.dart';
+import 'package:check_list_app/service/parent_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
 import 'package:check_list_app/user_data.dart';
+import 'package:check_list_app/view/setting_menu_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,8 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      color: appSetting.mainColor,
+      // color: Theme.of(context).primaryColor,
+      color: DynamicTheme.of(context).color,
       child: Center(
         child: Icon(
           Icons.check,
@@ -78,7 +81,6 @@ class _ParentTaskView extends State<ParentTaskView> {
   @override
   Widget build(BuildContext context) {
     final taskService = Provider.of<ParentTaskService>(context);
-    final appSetting = AppSettings();
 
     return Scaffold(
       appBar: AppBar(
@@ -86,6 +88,20 @@ class _ParentTaskView extends State<ParentTaskView> {
           Icons.check,
           size: 28.0,
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              // メニュー画面に遷移
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => SettingMenuView()
+                )
+              );
+            },
+          )
+        ],
       ),
 
       body: SafeArea(
@@ -137,11 +153,11 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             Container(
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -180,7 +196,7 @@ class _ParentTaskView extends State<ParentTaskView> {
 
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             AdmobBanner(

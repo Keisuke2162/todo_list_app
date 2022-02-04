@@ -1,7 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:check_list_app/child_task_service.dart';
+import 'package:check_list_app/service/child_task_service.dart';
 import 'package:check_list_app/service/admob.dart';
-import 'package:check_list_app/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -74,7 +73,6 @@ class _ChildTaskView extends State<ChildTaskView> {
   Widget build(BuildContext context) {
 
     final taskService = Provider.of<ChildTaskService>(context);
-    final appSetting = AppSettings();
 
     return Scaffold(
       appBar: AppBar(
@@ -188,11 +186,11 @@ class _ChildTaskView extends State<ChildTaskView> {
             ),
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             Container(
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -232,7 +230,7 @@ class _ChildTaskView extends State<ChildTaskView> {
 
             Container(
               height: 16.0,
-              color: appSetting.mainColor,
+              color: Theme.of(context).primaryColor,
             ),
 
             AdmobBanner(

@@ -1,9 +1,9 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:check_list_app/sign_process.dart';
-import 'package:check_list_app/auth_service.dart';
-import 'package:check_list_app/child_task_service.dart';
-import 'package:check_list_app/parent_task_service.dart';
-import 'package:check_list_app/user_data.dart';
+import 'package:check_list_app/theme/dynamic_theme.dart';
+import 'package:check_list_app/view/sign_process.dart';
+import 'package:check_list_app/service/auth_service.dart';
+import 'package:check_list_app/service/child_task_service.dart';
+import 'package:check_list_app/service/parent_task_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,17 +29,29 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final appSetting = AppSettings();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'OpenSansCondensed',
-        primarySwatch: appSetting.mainColor,
+    return DynamicTheme(
+      // defaultColor: Colors.indigo,
+      data: (MaterialColor primarySwatch) => ThemeData(
+        primarySwatch: primarySwatch
       ),
-      home: SignProcess(),
+      loadThemeColorOnStart: true,
+      themedWidgetBuilder: (context, theme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          /*
+          theme: ThemeData(
+            fontFamily: 'OpenSansCondensed',
+            primarySwatch: appSetting.mainColor,
+          ),
+
+           */
+          home: SignProcess(),
+        );
+      },
     );
   }
 }
