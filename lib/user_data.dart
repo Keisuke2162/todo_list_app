@@ -1,3 +1,4 @@
+import 'package:check_list_app/view/app_icon_page.dart';
 import 'package:check_list_app/view/theme_color_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,5 +25,5 @@ class MenuData {
 
 List<MenuData> menuList = [
   MenuData('テーマカラー', ThemeColorPage()),
-  // MenuData('アイコン変更', ThemeColorPage())
+  MenuData('アイコン変更', AppIconPage())
 ];
