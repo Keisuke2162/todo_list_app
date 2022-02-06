@@ -4,28 +4,29 @@ import 'package:flutter/cupertino.dart';
 class AppIcon {
   String name;
   AssetImage iconImage;
+  String iconImageName;
 
-  AppIcon(this.name, this.iconImage);
+  AppIcon(this.name, this.iconImage, this.iconImageName);
 }
 
 List<AppIcon> appIconDataList = [
-  AppIcon('red', AssetImage("lib/assets/icon_red.png")),
-  AppIcon('pink', AssetImage('lib/assets/icon_pink.png')),
-  AppIcon('purple', AssetImage('lib/assets/icon_purple.png')),
-  AppIcon('deepPurple', AssetImage('lib/assets/icon_deepPurple.png')),
-  AppIcon('indigo', AssetImage('lib/assets/icon_indigo.png')),
-  AppIcon('blue', AssetImage('lib/assets/icon_blue.png')),
-  AppIcon('lightBlue', AssetImage('lib/assets/icon_lightBlue.png')),
-  AppIcon('cyan', AssetImage('lib/assets/icon_cyan.png')),
-  AppIcon('teal', AssetImage('lib/assets/icon_teal.png')),
-  AppIcon('green', AssetImage('lib/assets/icon_green.png')),
-  AppIcon('lightGreen', AssetImage('lib/assets/icon_lightGreen.png')),
-  AppIcon('lime', AssetImage('lib/assets/icon_lime.png')),
-  AppIcon('yellow', AssetImage('lib/assets/icon_yellow.png')),
-  AppIcon('amber', AssetImage('lib/assets/icon_amber.png')),
-  AppIcon('orange', AssetImage('lib/assets/icon_orange.png')),
-  AppIcon('deepOrange', AssetImage('lib/assets/icon_deepOrange.png')),
-  AppIcon('brown', AssetImage('lib/assets/icon_brown.png')),
-  AppIcon('grey', AssetImage('lib/assets/icon_grey.png')),
-  AppIcon('blueGrey', AssetImage('lib/assets/icon_blueGrey.png')),
+  AppIcon('red', AssetImage("lib/assets/icon_red.png"), 'icon_red_2'),
+  AppIcon('pink', AssetImage('lib/assets/icon_pink.png'), 'icon_pink_2'),
+  AppIcon('purple', AssetImage('lib/assets/icon_purple.png'), 'icon_purple_2'),
+  AppIcon('deepPurple', AssetImage('lib/assets/icon_deepPurple.png'), 'icon_deepPurple_2'),
+  AppIcon('indigo', AssetImage('lib/assets/icon_indigo.png'), 'icon_indigo_2'),
+  AppIcon('blue', AssetImage('lib/assets/icon_blue.png'), 'icon_blue_2'),
+  AppIcon('lightBlue', AssetImage('lib/assets/icon_lightBlue.png'), 'icon_lightBlue_2'),
+  AppIcon('cyan', AssetImage('lib/assets/icon_cyan.png'), 'icon_cyan_2'),
+  AppIcon('teal', AssetImage('lib/assets/icon_teal.png'), 'icon_teal_2'),
+  AppIcon('green', AssetImage('lib/assets/icon_green.png'), 'icon_green_2'),
+  AppIcon('lightGreen', AssetImage('lib/assets/icon_lightGreen.png'), 'icon_lightGreen_2'),
+  AppIcon('lime', AssetImage('lib/assets/icon_lime.png'), 'icon_lime_2'),
+  AppIcon('yellow', AssetImage('lib/assets/icon_yellow.png'), 'icon_yellow_2'),
+  AppIcon('amber', AssetImage('lib/assets/icon_amber.png'), 'icon_amber_2'),
+  AppIcon('orange', AssetImage('lib/assets/icon_orange.png'), 'icon_orange_2'),
+  AppIcon('deepOrange', AssetImage('lib/assets/icon_deepOrange.png'), 'icon_deepOrange_2'),
+  AppIcon('brown', AssetImage('lib/assets/icon_brown.png'), 'icon_brown_2'),
+  AppIcon('grey', AssetImage('lib/assets/icon_grey.png'), 'icon_grey_2'),
+  AppIcon('blueGrey', AssetImage('lib/assets/icon_blueGrey.png'), 'icon_blueGrey_2'),
 ];
