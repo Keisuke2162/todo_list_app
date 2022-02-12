@@ -10,47 +10,20 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>icon_red_2</key>
+			<key>icon_amber_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_red_2</string>
+					<string>icon_amber_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_pink_2</key>
+			<key>icon_blueGrey_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_pink_2</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>icon_purple_2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon_purple_2</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>icon_deepPurple_2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon_deepPurple_2</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>icon_indigo_2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon_indigo_2</string>
+					<string>icon_blueGrey_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -64,11 +37,11 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_lightBlue_2</key>
+			<key>icon_brown_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_lightBlue_2</string>
+					<string>icon_brown_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -82,11 +55,20 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_teal_2</key>
+			<key>icon_deepOrange_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_teal_2</string>
+					<string>icon_deepOrange_2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon_deepPurple_2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_deepPurple_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -96,6 +78,33 @@
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>icon_green_2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon_grey_2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_grey_2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon_indigo_2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_indigo_2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon_lightBlue_2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_lightBlue_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -118,24 +127,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_yellow_2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon_yellow_2</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>icon_amber_2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>icon_amber_2</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
 			<key>icon_orange_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -145,38 +136,47 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_deepOrange_2</key>
+			<key>icon_pink_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_deepOrange_2</string>
+					<string>icon_pink_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_brown_2</key>
+			<key>icon_purple_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_brown_2</string>
+					<string>icon_purple_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_grey_2</key>
+			<key>icon_red_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_grey_2</string>
+					<string>icon_red_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>icon_blueGrey_2</key>
+			<key>icon_teal_2</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>icon_blueGrey_2</string>
+					<string>icon_teal_2</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon_yellow_2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_yellow_2</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -197,10 +197,10 @@
 			<array>
 				<string>icon_blue_2</string>
 			</array>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeMagazine</string>
 			<key>UINewsstandBindingEdge</key>
 			<string>UINewsstandBindingEdgeLeft</string>
+			<key>UINewsstandBindingType</key>
+			<string>UINewsstandBindingTypeMagazine</string>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>

@@ -1,17 +1,21 @@
 import 'package:check_list_app/view/app_icon_page.dart';
 import 'package:check_list_app/view/theme_color_page.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
-class AppSettings extends ChangeNotifier {
+/// アプリの設定データクラス
+class AppSettings {
 
-  // 設定データ
+  // サイドメニューデータを取得
+  List<MenuData> getMenuListData() {
+    if(Platform.isIOS) {
+      return iosMenuList;
 
-  // テーマカラー
-  // Color mainColor = Colors.red;
+    } else {
+      return androidMenuList;
 
-  // アプリアイコン
-
-  // フォント
+    }
+  }
 }
 
 
@@ -23,7 +27,11 @@ class MenuData {
   MenuData(this.title, this.page);
 }
 
-List<MenuData> menuList = [
+List<MenuData> iosMenuList = [
   MenuData('テーマカラー', ThemeColorPage()),
   MenuData('アイコン変更', AppIconPage())
+];
+
+List<MenuData> androidMenuList = [
+  MenuData('テーマカラー', ThemeColorPage()),
 ];
