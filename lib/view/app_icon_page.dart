@@ -54,12 +54,7 @@ class _AppIconPage extends State<AppIconPage> {
                     onTap: () async {
                       try {
                         if (await FlutterDynamicIcon.supportsAlternateIcons) {
-                          // TODO
                           await FlutterDynamicIcon.setAlternateIconName(appIconDataList[index].iconImageName);
-
-                          FlutterDynamicIcon.getAlternateIconName().then((value) {
-                            print("テスト2：${value}");
-                          });
 
                           FlutterDynamicIcon.getAlternateIconName().then((value) {
                             setState(() {

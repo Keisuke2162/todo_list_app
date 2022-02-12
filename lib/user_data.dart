@@ -1,5 +1,6 @@
 import 'package:check_list_app/view/app_icon_page.dart';
 import 'package:check_list_app/view/theme_color_page.dart';
+import 'package:check_list_app/view/user_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -29,9 +30,11 @@ class MenuData {
 
 List<MenuData> iosMenuList = [
   MenuData('テーマカラー', ThemeColorPage()),
-  MenuData('アイコン変更', AppIconPage())
+  MenuData('アイコン変更', AppIconPage()),
+  MenuData('お問い合わせ', ContactPage()),
 ];
 
 List<MenuData> androidMenuList = [
   MenuData('テーマカラー', ThemeColorPage()),
+  MenuData('お問い合わせ', ContactPage()),
 ];
