@@ -67,7 +67,7 @@ class DynamicThemeState extends State<DynamicTheme> {
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String loadColorStr = prefs.getString(_themeColorKey) ?? "red";
+    String loadColorStr = prefs.getString(_themeColorKey) ?? "blue";
     _color = themeType[loadColorStr];
     _themeData = widget.data(_color);
 

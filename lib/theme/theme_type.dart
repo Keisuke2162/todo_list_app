@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-enum ThemeType {
-  red,
-  pink,
-  purple,
-
-}
-
 Map<String, Color> themeType = {
   'red': Colors.red,
   'pink': Colors.pink,
